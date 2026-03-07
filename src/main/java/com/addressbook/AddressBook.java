@@ -99,4 +99,19 @@ public class AddressBook {
 			System.out.println("Contact Not Found");
 		}
 	}
+	
+	 public void displayContacts() {
+
+	        for (ContactPerson person : contactList) {
+
+	            System.out.println("Name: " + person.firstName + " " + person.lastName);
+	            System.out.println("Address: " + person.address);
+	            System.out.println("City: " + person.city);
+	            System.out.println("State: " + person.state);
+	            System.out.println("Zip: " + person.zip);
+	            System.out.println("Phone: " + person.phoneNumber);
+	            System.out.println("Email: " + person.email);
+	            System.out.println("-------------------------");
+	        }
+	    }
 }
