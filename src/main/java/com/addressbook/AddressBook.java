@@ -7,7 +7,6 @@ public class AddressBook {
 	ArrayList<ContactPerson> contactList = new ArrayList<>();
 	Scanner scanner = new Scanner(System.in);
 
-	
 	public void addContact() {
 
 		ContactPerson person = new ContactPerson();
@@ -46,7 +45,7 @@ public class AddressBook {
 		String name = scanner.nextLine();
 
 		boolean found = false;
-		
+
 		for (ContactPerson person : contactList) {
 			if (person.firstName.equalsIgnoreCase(name)) {
 				System.out.print("Enter New Address: ");
@@ -69,12 +68,34 @@ public class AddressBook {
 				person.email = scanner.nextLine();
 
 				System.out.println("Contact Updated Successfully");
-				found=true;
+				found = true;
 				break;
 			}
 
 		}
-		if(!found) {
+		if (!found) {
+			System.out.println("Contact Not Found");
+		}
+	}
+
+	public void deleteContact() {
+		System.out.println("Enter First Name of Contact to Delete: ");
+		String name = scanner.nextLine();
+
+		ContactPerson personToDelete = null;
+
+		for (ContactPerson person : contactList) {
+
+			if (person.firstName.equals(name)) {
+				personToDelete = person;
+				break;
+			}
+		}
+
+		if (personToDelete != null) {
+			contactList.remove(personToDelete);
+			System.out.println("Contact Deleted Successfully");
+		} else {
 			System.out.println("Contact Not Found");
 		}
 	}
