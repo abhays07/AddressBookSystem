@@ -12,6 +12,7 @@ public class AddressBookMain {
 		AddressBookFileIO fileIO = new AddressBookFileIO();
 		AddressBookCSVIO csvIO = new AddressBookCSVIO();
 		AddressBookJSONIO jsonIO = new AddressBookJSONIO();
+		AddressBookDBService dbService = new AddressBookDBService();
 
 		HashMap<String, AddressBook> addressBookMap = new HashMap<>();
 		Scanner scanner = new Scanner(System.in);
@@ -36,7 +37,8 @@ public class AddressBookMain {
 			System.out.println("16. Read Contacts from CSV");
 			System.out.println("17. Write Contacts to JSON");
 			System.out.println("18. Read Contacts from JSON");
-			System.out.println("19. Exit");
+			System.out.println("19 Retrieve Contacts from Database");
+			System.out.println("20. Exit");
 
 			System.out.print("Enter Choice: ");
 			int choice = scanner.nextInt();
@@ -161,8 +163,13 @@ public class AddressBookMain {
 			case 18:
 				jsonIO.readContactsFromJSON();
 				break;
-				
+			
 			case 19:
+
+			    dbService.retrieveContacts();
+
+			    break;
+			case 20:
 				System.out.println("Exiting - Thank you for choosing AddressBook");
 				
 				System.exit(0);
