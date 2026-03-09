@@ -167,6 +167,13 @@ public class AddressBook {
 	    });
 	}
 	
+	public void sortContactsByName() {
+
+	    contactList.stream()
+	            .sorted((p1, p2) -> p1.firstName.compareToIgnoreCase(p2.firstName))
+	            .forEach(System.out::println);
+	}
+	
 	public void displayContacts() {
 
 	        for (ContactPerson person : contactList) {

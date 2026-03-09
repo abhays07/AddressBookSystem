@@ -22,7 +22,8 @@ public class AddressBookMain {
             System.out.println("6. View Persons by State");
             System.out.println("7. Count Contacts by City");
             System.out.println("8. Count Contacts by State");
-            System.out.println("9. Exit");
+            System.out.println("9. Sort Contacts by Name");
+            System.out.println("10. Exit");
 
             System.out.print("Enter Choice: ");
             int choice = scanner.nextInt();
@@ -113,6 +114,14 @@ public class AddressBookMain {
 
                     addressBookMap.forEach((m, n) -> {
                         n.countContactsByState();
+                    });
+
+                    break;
+                    
+                case 9:
+
+                    addressBookMap.forEach((c, d) -> {
+                        d.sortContactsByName();
                     });
 
                     break;

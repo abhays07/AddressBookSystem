@@ -31,4 +31,15 @@ public class ContactPerson {
     public int hashCode() {
     	return Objects.hash(firstName,lastName);
     }
+    
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " | " +
+               address + " | " +
+               city + " | " +
+               state + " | " +
+               zip + " | " +
+               phoneNumber + " | " +
+               email;
+    }
 }
