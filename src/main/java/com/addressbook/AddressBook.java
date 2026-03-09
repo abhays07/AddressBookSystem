@@ -109,6 +109,19 @@ public class AddressBook {
 		}
 	}
 	
+	public void searchPersonByCity(String city) {
+		contactList.stream().filter(person -> person.city.equalsIgnoreCase(city)).forEach(person -> System.out.println(person.firstName + " "+person.lastName+" - "+ person.city));
+	}
+	
+	public void searchPersonByState(String state) {
+
+	    contactList.stream()
+	            .filter(person -> person.state.equalsIgnoreCase(state))
+	            .forEach(person ->
+	                    System.out.println(person.firstName + " " + person.lastName + " - " + person.state));
+	}
+	
+	
 	 public void displayContacts() {
 
 	        for (ContactPerson person : contactList) {
@@ -123,4 +136,5 @@ public class AddressBook {
 	            System.out.println("-------------------------");
 	        }
 	    }
+	 
 }
