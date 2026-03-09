@@ -16,6 +16,15 @@ public class AddressBook {
 
 		System.out.print("Enter Last Name: ");
 		person.lastName = scanner.nextLine();
+		
+		boolean duplicate = contactList.stream()
+	            .anyMatch(p -> p.firstName.equalsIgnoreCase(person.firstName) &&
+	                           p.lastName.equalsIgnoreCase(person.lastName));
+
+	    if (duplicate) {
+	        System.out.println("Duplicate Contact Found. Cannot Add.");
+	        return;
+	    }
 
 		System.out.print("Enter Address: ");
 		person.address = scanner.nextLine();
