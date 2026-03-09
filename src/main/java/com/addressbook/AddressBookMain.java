@@ -23,13 +23,17 @@ public class AddressBookMain {
             System.out.println("7. Count Contacts by City");
             System.out.println("8. Count Contacts by State");
             System.out.println("9. Sort Contacts by Name");
-            System.out.println("10. Exit");
+            System.out.println("10. Sort Contacts by City");
+            System.out.println("11. Sort Contacts by State");
+            System.out.println("12. Sort Contacts by Zip");
+            System.out.println("13. Exit");
 
             System.out.print("Enter Choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
-            if (choice == 7) {
+            // Updated exit condition to match menu option 13
+            if (choice == 13) {
                 System.out.println("Exiting... Goodbye!");
                 break;
             }
@@ -37,15 +41,15 @@ public class AddressBookMain {
             switch (choice) {
                 case 1:
                     System.out.print("Enter Address Book Name: ");
-                    String name = scanner.nextLine();
-                    addressBookMap.put(name, new AddressBook());
-                    System.out.println("Address Book '" + name + "' Created Successfully");
+                    String bookTitle = scanner.nextLine(); 
+                    addressBookMap.put(bookTitle, new AddressBook());
+                    System.out.println("Address Book '" + bookTitle + "' Created.");
                     break;
 
                 case 2:
                     System.out.print("Enter Address Book Name to Open: ");
-                    String bookName = scanner.nextLine();
-                    AddressBook selectedBook = addressBookMap.get(bookName);
+                    String searchBook = scanner.nextLine();
+                    AddressBook selectedBook = addressBookMap.get(searchBook);
 
                     if (selectedBook == null) {
                         System.out.println("Error: Address Book Not Found!");
@@ -54,14 +58,9 @@ public class AddressBookMain {
 
                     boolean running = true;
                     while (running) {
-                        System.out.println("\n--- Managing: " + bookName + " ---");
-                        System.out.println("1. Add Contact");
-                        System.out.println("2. Edit Contact");
-                        System.out.println("3. Delete Contact");
-                        System.out.println("4. Display Contacts");
-                        System.out.println("5. Back to Main Menu");
-
-                        System.out.print("Enter Choice: ");
+                        System.out.println("\n--- Managing: " + searchBook + " ---");
+                        System.out.println("1. Add Contact | 2. Edit | 3. Delete | 4. Display | 5. Back");
+                        System.out.print("Choice: ");
                         int option = scanner.nextInt();
                         scanner.nextLine();
 
@@ -77,56 +76,56 @@ public class AddressBookMain {
                     break;
 
                 case 3:
-                    System.out.print("Enter City to Search: ");
-                    String searchCity = scanner.nextLine();
-                    addressBookMap.forEach((n, book) -> book.searchPersonByCity(searchCity));
+                    System.out.print("Enter City: ");
+                    String city = scanner.nextLine();
+                    addressBookMap.forEach((k, v) -> v.searchPersonByCity(city));
                     break;
 
                 case 4:
-                    System.out.print("Enter State to Search: ");
-                    String searchState = scanner.nextLine();
-                    addressBookMap.forEach((n, book) -> book.searchPersonByState(searchState));
+                    System.out.print("Enter State: ");
+                    String state = scanner.nextLine();
+                    addressBookMap.forEach((k, v) -> v.searchPersonByState(state));
                     break;
 
                 case 5:
                     System.out.print("Enter City Name: ");
                     String cityName = scanner.nextLine();
-                    // Used (n, a) to avoid variable name collisions
-                    addressBookMap.forEach((n, a) -> a.viewPersonsByCity(cityName));
+                    addressBookMap.forEach((k, v) -> v.viewPersonsByCity(cityName));
                     break;
 
                 case 6:
                     System.out.print("Enter State Name: ");
                     String stateName = scanner.nextLine();
-                    // Using unique parameter names (k, v) for the lambda
                     addressBookMap.forEach((k, v) -> v.viewPersonsByState(stateName));
                     break;
                 
                 case 7:
-
-                    addressBookMap.forEach((x, y) -> {
-                        y.countContactsByCity();
-                    });
-
+                    addressBookMap.forEach((k, v) -> v.countContactsByCity());
                     break;
 
                 case 8:
-
-                    addressBookMap.forEach((m, n) -> {
-                        n.countContactsByState();
-                    });
-
+                    addressBookMap.forEach((k, v) -> v.countContactsByState());
                     break;
                     
                 case 9:
-
-                    addressBookMap.forEach((c, d) -> {
-                        d.sortContactsByName();
-                    });
-
+                    addressBookMap.forEach((k, v) -> v.sortContactsByName());
                     break;
+                    
+                case 10:
+                    // Using (k, v) to avoid "name" and "addressBook" collision
+                    addressBookMap.forEach((k, v) -> v.sortContactsByCity());
+                    break;
+
+                case 11:
+                    addressBookMap.forEach((k, v) -> v.sortContactsByState());
+                    break;
+
+                case 12:
+                    addressBookMap.forEach((k, v) -> v.sortContactsByZip());
+                    break;
+
                 default:
-                    System.out.println("Invalid Choice. Please try again.");
+                    System.out.println("Invalid Choice.");
             }
         }
         scanner.close();

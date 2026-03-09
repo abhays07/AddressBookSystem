@@ -174,6 +174,26 @@ public class AddressBook {
 	            .forEach(System.out::println);
 	}
 	
+	public void sortContactsByCity() {
+
+	    contactList.stream()
+	            .sorted((p1, p2) -> p1.city.compareToIgnoreCase(p2.city))
+	            .forEach(System.out::println);
+	}
+	
+	public void sortContactsByState() {
+
+	    contactList.stream()
+	            .sorted((p1, p2) -> p1.state.compareToIgnoreCase(p2.state))
+	            .forEach(System.out::println);
+	}
+	
+	public void sortContactsByZip() {
+
+	    contactList.stream()
+	            .sorted((p1, p2) -> Integer.compare(p1.zip, p2.zip))
+	            .forEach(System.out::println);
+	}
 	public void displayContacts() {
 
 	        for (ContactPerson person : contactList) {
