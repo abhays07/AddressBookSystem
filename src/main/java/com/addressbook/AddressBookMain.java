@@ -41,14 +41,15 @@ public class AddressBookMain {
             System.out.println("18. Read Contacts from JSON");
             System.out.println("19. Retrieve Contacts from Database");
             System.out.println("20. Update Contact City in Database");
-            System.out.println("21. Exit");
+            System.out.println("21 Retrieve Contacts by Date Range");
+            System.out.println("22. Exit");
 
             System.out.print("Enter Choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
             // Logic Check: If choice is 21, break the loop
-            if (choice == 21) {
+            if (choice == 22) {
                 System.out.println("Exiting - Thank you for choosing AddressBook");
                 break;
             }
@@ -165,6 +166,18 @@ public class AddressBookMain {
                 case 19:
                     dbService.retrieveContacts();
                     break;
+                
+                case 21:
+
+                    System.out.print("Enter Start Date (YYYY-MM-DD): ");
+                    String startDate = scanner.nextLine();
+
+                    System.out.print("Enter End Date (YYYY-MM-DD): ");
+                    String endDate = scanner.nextLine();
+
+                    dbService.retrieveContactsByDateRange(startDate, endDate);
+
+                    break;
 
                 case 20:
                     System.out.print("Enter First Name: ");
@@ -183,6 +196,17 @@ public class AddressBookMain {
                     }
                     break;
 
+                case 21:
+
+                    System.out.print("Enter Start Date (YYYY-MM-DD): ");
+                    String startDate = scanner.nextLine();
+
+                    System.out.print("Enter End Date (YYYY-MM-DD): ");
+                    String endDate = scanner.nextLine();
+
+                    dbService.retrieveContactsByDateRange(startDate, endDate);
+
+                    break;
                 default:
                     System.out.println("Invalid Choice.");
             }

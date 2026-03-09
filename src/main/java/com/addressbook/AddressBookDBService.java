@@ -64,4 +64,40 @@ public class AddressBookDBService {
 
 		return false;
 	}
+	
+	public void retrieveContactsByDateRange(String startDate, String endDate) {
+
+	    String url = "jdbc:mysql://localhost:3306/addressbook_service";
+	    String username = "root";
+	    String password = "05052005";
+
+	    String query = "SELECT * FROM contacts WHERE date_added BETWEEN ? AND ?";
+
+	    try {
+
+	        Connection connection = DriverManager.getConnection(url, username, password);
+
+	        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+	        preparedStatement.setString(1, startDate);
+	        preparedStatement.setString(2, endDate);
+
+	        ResultSet resultSet = preparedStatement.executeQuery();
+
+	        while (resultSet.next()) {
+
+	            System.out.println(
+	                    resultSet.getInt("id") + " " +
+	                    resultSet.getString("first_name") + " " +
+	                    resultSet.getString("last_name") + " " +
+	                    resultSet.getDate("date_added")
+	            );
+	        }
+
+	        connection.close();
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 }
