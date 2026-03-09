@@ -10,6 +10,9 @@ public class AddressBookMain {
 		System.out.println("Welcome to Address Book Program");
 
 		AddressBookFileIO fileIO = new AddressBookFileIO();
+		AddressBookCSVIO csvIO = new AddressBookCSVIO();
+		AddressBookJSONIO jsonIO = new AddressBookJSONIO();
+
 		HashMap<String, AddressBook> addressBookMap = new HashMap<>();
 		Scanner scanner = new Scanner(System.in);
 
@@ -29,7 +32,11 @@ public class AddressBookMain {
 			System.out.println("12. Sort Contacts by Zip");
 			System.out.println("13. Write Contacts to File");
 			System.out.println("14. Read Contacts from File");
-			System.out.println("15. Exit");
+			System.out.println("15. Write Contacts to CSV");
+			System.out.println("16. Read Contacts from CSV");
+			System.out.println("17. Write Contacts to JSON");
+			System.out.println("18. Read Contacts from JSON");
+			System.out.println("19. Exit");
 
 			System.out.print("Enter Choice: ");
 			int choice = scanner.nextInt();
@@ -126,15 +133,40 @@ public class AddressBookMain {
 			case 12:
 				addressBookMap.forEach((k, v) -> v.sortContactsByZip());
 				break;
-				
+
 			case 13:
 				addressBookMap.forEach((name, addressBook) -> fileIO.writeContactsToFile(addressBook.getContacts()));
 				break;
-				
+
 			case 14:
 				fileIO.readContactsFromFile();
 				break;
+
+			case 15:
+				addressBookMap.forEach((name, addressBook) -> {
+					csvIO.writeContactsToCSV(addressBook.getContacts());
+				});
+				break;
+
+			case 16:
+				csvIO.readContactsFromCSV();
+				break;
+
+			case 17:
+				addressBookMap.forEach((name, addressBook) -> {
+					jsonIO.writeContactsToJSON(addressBook.getContacts());
+				});
+				break;
+
+			case 18:
+				jsonIO.readContactsFromJSON();
+				break;
 				
+			case 19:
+				System.out.println("Exiting - Thank you for choosing AddressBook");
+				
+				System.exit(0);
+
 			default:
 				System.out.println("Invalid Choice.");
 			}
