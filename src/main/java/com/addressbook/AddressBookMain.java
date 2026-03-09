@@ -20,7 +20,9 @@ public class AddressBookMain {
             System.out.println("4. Search Person by State");
             System.out.println("5. View Persons by City");
             System.out.println("6. View Persons by State");
-            System.out.println("7. Exit");
+            System.out.println("7. Count Contacts by City");
+            System.out.println("8. Count Contacts by State");
+            System.out.println("9. Exit");
 
             System.out.print("Enter Choice: ");
             int choice = scanner.nextInt();
@@ -98,7 +100,22 @@ public class AddressBookMain {
                     // Using unique parameter names (k, v) for the lambda
                     addressBookMap.forEach((k, v) -> v.viewPersonsByState(stateName));
                     break;
+                
+                case 7:
 
+                    addressBookMap.forEach((x, y) -> {
+                        y.countContactsByCity();
+                    });
+
+                    break;
+
+                case 8:
+
+                    addressBookMap.forEach((m, n) -> {
+                        n.countContactsByState();
+                    });
+
+                    break;
                 default:
                     System.out.println("Invalid Choice. Please try again.");
             }

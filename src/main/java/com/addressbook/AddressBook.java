@@ -152,6 +152,21 @@ public class AddressBook {
 	        System.out.println("No contacts found in this state.");
 	    }
 	}
+	
+	public void countContactsByCity() {
+
+	    cityPersonMap.forEach((city, persons) -> {
+	        System.out.println(city + " : " + persons.size() + " contacts");
+	    });
+	}
+	
+	public void countContactsByState() {
+
+	    statePersonMap.forEach((state, persons) -> {
+	        System.out.println(state + " : " + persons.size() + " contacts");
+	    });
+	}
+	
 	public void displayContacts() {
 
 	        for (ContactPerson person : contactList) {
