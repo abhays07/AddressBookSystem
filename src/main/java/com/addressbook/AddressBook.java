@@ -199,6 +199,21 @@ public class AddressBook {
 	    return contactList;
 	}
 	
+	public void updateContactCity(String name, String city) {
+
+	    for (ContactPerson person : contactList) {
+
+	        if (person.firstName.equals(name)) {
+
+	            person.city = city;
+
+	            System.out.println("Memory Updated Successfully");
+	            return;
+	        }
+	    }
+
+	    System.out.println("Contact Not Found");
+	}
 	public void displayContacts() {
 
 	        for (ContactPerson person : contactList) {
