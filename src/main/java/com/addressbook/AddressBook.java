@@ -1,10 +1,13 @@
 package com.addressbook;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBook {
 	ArrayList<ContactPerson> contactList = new ArrayList<>();
+	
+	Map<String, List<ContactPerson>> cityPersonMap = new HashMap<>();
+	Map<String, List<ContactPerson>> statePersonMap = new HashMap<>();
+	
 	Scanner scanner = new Scanner(System.in);
 
 	public void addContact() {
@@ -46,6 +49,10 @@ public class AddressBook {
 		person.email = scanner.nextLine();
 
 		contactList.add(person);
+		
+		cityPersonMap.computeIfAbsent(person.city, k -> new ArrayList<>()).add(person);
+		statePersonMap.computeIfAbsent(person.state, k -> new ArrayList<>()).add(person);
+		
 		System.out.println("Contact Added Successfully");
 	}
 
@@ -122,7 +129,30 @@ public class AddressBook {
 	}
 	
 	
-	 public void displayContacts() {
+	public void viewPersonsByCity(String city) {
+
+	    List<ContactPerson> persons = cityPersonMap.get(city);
+
+	    if (persons != null) {
+	        persons.forEach(person ->
+	                System.out.println(person.firstName + " " + person.lastName));
+	    } else {
+	        System.out.println("No contacts found in this city.");
+	    }
+	}
+	
+	public void viewPersonsByState(String state) {
+
+	    List<ContactPerson> persons = statePersonMap.get(state);
+
+	    if (persons != null) {
+	        persons.forEach(person ->
+	                System.out.println(person.firstName + " " + person.lastName));
+	    } else {
+	        System.out.println("No contacts found in this state.");
+	    }
+	}
+	public void displayContacts() {
 
 	        for (ContactPerson person : contactList) {
 
