@@ -194,6 +194,11 @@ public class AddressBook {
 	            .sorted((p1, p2) -> Integer.compare(p1.zip, p2.zip))
 	            .forEach(System.out::println);
 	}
+	
+	public List<ContactPerson> getContacts() {
+	    return contactList;
+	}
+	
 	public void displayContacts() {
 
 	        for (ContactPerson person : contactList) {
